@@ -3,13 +3,40 @@
     <name>Random Rainbow Maggy</name>
     <directory>randommaggy</directory>
     <id>2558612818</id>
-    <description>Randomly chosen hair colours for Maggy
+    <description>[h1]Random Rainbow Maggy[/h1]
+A fabulous array of colors for Maggy's beautiful not-so-golden locks.
+A rainbow of unique colors!
 
-Supports customisation through Mod Config Menu:
-	Choose from randomisation on run start, room change, and taking damage
-	Hue randomisation options
-	Manually pick colours</description>
-    <version>1.1</version>
+[h2]Mod Config Menu[/h2]
+A wide range of customisation options are available through [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2487535818]Mod Config Menu[/url]
+
+Differing ways to experience COLOR
+[list]
+    [*] Random colors
+    [*] Gradients
+    [*] Monochrome
+    [*] Disabling specific strands of hair
+[/list] 
+
+Varying triggers for when you want to change hair color
+[list]
+    [*] Floor transition
+    [*] Room transition
+    [*] Being hurt
+    [*] Over time
+[/list] 
+
+[h2]RAINBOWS[/h2]
+
+Want the original skin? [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2532384053]Grab it here![/url]
+
+[h2]Problems?[/h2]
+Not compatible with a certain mod? Bugs? Please let me know in a comment or a discussion thread!
+
+[h2]SOURCE[/h2]
+Source hosted on [url=https://github.com/patcolyn/RandomRainbowMaggy]github[/url]
+Pull requests are always appreciated :)</description>
+    <version>1.2</version>
     <visibility>Private</visibility>
     <tag id="Player Characters"/>
     <tag id="Graphics"/>

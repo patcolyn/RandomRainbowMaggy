@@ -1,6 +1,8 @@
+--[[
 TODO:
 Favourites menu
 Roll only through favourites
+Co-Op
 ]]--
 
 local mod = RegisterMod("RandomRainbowMaggy", 1)

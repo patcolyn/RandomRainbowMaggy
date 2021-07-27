@@ -24,7 +24,7 @@ local modSettings = {
 	--Triggers
 	["updateOnFloor"] = false,
 	["updateOnRoom"] = true, 
-	["updateOnDmg"] = true,
+	["updateOnDmg"] = false,
 	--["updateOnCollectiblePickup"] = false,
 	["updateOnUse"] = false,
 	["updateOnFrame"] = false,

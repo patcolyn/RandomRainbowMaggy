@@ -2,14 +2,14 @@
 <metadata>
     <name>Random Rainbow Maggy</name>
     <directory>randommaggy</directory>
-    <id>0</id>
+    <id>2558612818</id>
     <description>Randomly chosen hair colours for Maggy
 
 Supports customisation through Mod Config Menu:
 	Choose from randomisation on run start, room change, and taking damage
 	Hue randomisation options
 	Manually pick colours</description>
-    <version>1.0</version>
+    <version>1.1</version>
     <visibility>Private</visibility>
     <tag id="Player Characters"/>
     <tag id="Graphics"/>

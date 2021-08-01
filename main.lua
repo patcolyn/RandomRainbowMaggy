@@ -68,34 +68,34 @@ end
 ---------------------------Callbacks----------------------------
 
 function mod:onStart()
-	mod:AddCostumes(false)
+	mod:AddCostumes()
 end
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.onStart)
 
 function mod:onFloor()
 	if modSettings["updateOnFloor"] then
-		mod:AddCostumes(false)
+		mod:AddCostumes()
 	end
 end
 mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.onFloor)
 
 function mod:onRoom()
 	if modSettings["updateOnRoom"] then
-		mod:AddCostumes(false)
+		mod:AddCostumes()
 	end
 end
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.onRoom)
 
 function mod:onDmg()
 	if modSettings["updateOnDmg"] then
-		mod:AddCostumes(false)
+		mod:AddCostumes()
 	end
 end
 mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, mod.onDmg, EntityType.ENTITY_PLAYER)
 
 function mod:onUse()
 	if modSettings["updateOnUse"] then
-		mod:AddCostumes(false)
+		mod:AddCostumes()
 	end
 end
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.onUse)
@@ -104,7 +104,7 @@ local delay = 1
 function mod:onFrame()
 	if delay == 0 then
 		if modSettings["updateOnFrame"]  then
-			mod:AddCostumes(false)
+			mod:AddCostumes()
 		end
 		delay = modSettings["onFrameDelay"]
 	end
@@ -112,44 +112,15 @@ function mod:onFrame()
 end
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, mod.onFrame)
 
---Protect Costume
-local protect_count = 1
-function mod:protect()
-	local player = Isaac.GetPlayer(0)
-
-	if player:GetPlayerType() == 1 and player:GetCollectibleCount() ~= protect_count then --1: Maggy
-		mod:AddCostumes(true)
-		protect_count = player:GetCollectibleCount()
-	end
-end
-mod:AddCallback(ModCallbacks.MC_POST_RENDER, mod.protect)
-
---TODO: Whitelist for non-conflicting costumes
-function mod:protectUse()
-	local player = Isaac.GetPlayer(0)
-	
-	if player:GetPlayerType() == 1 then
-		for i = 0, 121 do
-			player:TryRemoveNullCostume(i) --NullItemID
-		end
-		mod:AddCostumes(true)
-	end
-end
-mod:AddCallback(ModCallbacks.MC_USE_PILL, mod.protectUse)
-mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.protectUse)
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.protectUse)
-
 
 ----------------------------------------------------------------
 ---------------------Costume-Application------------------------
 
 --TODO: Add multiple player support
 --TODO: Refactor settings handling for this function
-function mod:AddCostumes(readd)
+function mod:AddCostumes()
 	
 	local player = Isaac.GetPlayer(0)
-
-	local readd = false or readd
 
 	local direction = 1
 	local hue = 0
@@ -158,45 +129,38 @@ function mod:AddCostumes(readd)
 		player:TryRemoveNullCostume(NullItemID.ID_MAGDALENE)
 		
 		for i = 1, costume_count do
-			
-			if readd then
-				--Reapply costumes
-				hue = modSettings["current"][i]
-				player:AddNullCostume(Locks[i][hue])
-			else
-				--Hue logic
-				if modSettings["gradient"] then
-					if i == 1 then
-						hue = rng:RandomInt(36) * 10
-						direction = rng:RandomInt(2) == 1 and 1 or -1
-						gradient_step = (rng:RandomInt(5)+1) * 10 * direction			
-					else
-						hue = (hue + gradient_step) % 360
-					end
-
-				elseif modSettings["monochrome"] then
-					if i == 1 then
-						hue = rng:RandomInt(36) * 10
-					end
-				
-				elseif modSettings["manual"] then
-					hue = modSettings["manual_locks"][i] * 10
-				
+			--Hue logic
+			if modSettings["gradient"] then
+				if i == 1 then
+					hue = rng:RandomInt(36) * 10
+					direction = rng:RandomInt(2) == 1 and 1 or -1
+					gradient_step = (rng:RandomInt(5)+1) * 10 * direction			
 				else
+					hue = (hue + gradient_step) % 360
+				end
+
+			elseif modSettings["monochrome"] then
+				if i == 1 then
 					hue = rng:RandomInt(36) * 10
 				end
-				
-				--Enable Locks
-				if modSettings["locks_enabled"][i] == true then
-					player:AddNullCostume(Locks[i][hue])
-				else
-					player:AddNullCostume(DefaultLocks[i])
-				end
-				
-				--Store current costume hues
-				modSettings["current"][i] = hue
-				modSettings["manual_locks"][i] = math.floor(modSettings["current"][i]/10)
+			
+			elseif modSettings["manual"] then
+				hue = modSettings["manual_locks"][i] * 10
+			
+			else
+				hue = rng:RandomInt(36) * 10
 			end
+			
+			--Enable Locks
+			if modSettings["locks_enabled"][i] == true then
+				player:AddNullCostume(Locks[i][hue])
+			else
+				player:AddNullCostume(DefaultLocks[i])
+			end
+			
+			--Store current costume hues
+			modSettings["current"][i] = hue
+			modSettings["manual_locks"][i] = math.floor(modSettings["current"][i]/10)
 		end
 
 		if modSettings["debug"] then

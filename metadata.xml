@@ -1,4 +1,9 @@
-[h1][u]Random Rainbow Maggy[/u][/h1]
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <name>Random Rainbow Maggy</name>
+    <directory>randommaggy</directory>
+    <id>2558612818</id>
+    <description>[h1][u]Random Rainbow Maggy[/u][/h1]
 A fabulous array of colors for Maggy's beautiful not-so-golden locks.
 A rainbow of unique colors!
 [h2]Mod Config Menu[/h2]
@@ -23,4 +28,10 @@ Want the original skin? [url=https://steamcommunity.com/sharedfiles/filedetails/
 Not compatible with a certain mod? Bugs? Please let me know in a comment or a discussion thread.
 [h2]SOURCE[/h2]
 Source hosted on [url=https://github.com/patcolyn/RandomRainbowMaggy]github[/url]
-Pull requests are always appreciated :)
+Pull requests are always appreciated :)</description>
+    <version>1.1</version>
+    <visibility>Public</visibility>
+    <tag id="Player Characters"/>
+    <tag id="Graphics"/>
+    <tag id="Lua"/>
+</metadata>
